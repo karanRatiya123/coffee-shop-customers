@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Location | The Velvet Roast</title>
+    <meta name="description" content="Find The Velvet Roast in Porbandar, Gujarat. Stop by for hand-crafted coffees, steamy lattes, and fresh house pastries.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="location.css">
+</head>
+<body class="home-page location-page-body">
+
+    <!-- ====== Floating Ambient Glow ====== -->
+    <div class="ambient-glow-container" aria-hidden="true">
+        <div class="glow-blob glow-blob-1"></div>
+        <div class="glow-blob glow-blob-2"></div>
+        <div class="glow-blob glow-blob-3"></div>
+    </div>
+
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="order.html" class="nav-link">Order</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="location.html" class="nav-link active">Location</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <!-- Sign in link will be auto-replaced by auth.js if a session is present -->
+        <a href="index.html" class="header-cta">Sign In</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- ====== Main Location Container ====== -->
+    <main class="location-container">
+        
+        <div class="location-grid">
+            
+            <!-- Left Side: Store Details -->
+            <div class="glass-card location-info-card reveal-on-scroll">
+                <div>
+                    <div class="location-title-section">
+                        <span class="brand-tag">Our Flagship Shop</span>
+                        <h1>Visit Velvet Roast<span id="visitor-greeting"></span>.</h1>
+                    </div>
+
+                    <div class="location-detail-list">
+                        <!-- Address -->
+                        <div class="location-detail-item">
+                            <div class="location-detail-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="location-detail-text">
+                                <h4>Find Us</h4>
+                                <p>Govt. Polytechnic Porbandar, Dut Sai Nagar,<br>Porbandar, Gujarat 360575</p>
+                            </div>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="location-detail-item">
+                            <div class="location-detail-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="location-detail-text">
+                                <h4>Store Hours</h4>
+                                <div class="location-hours-grid">
+                                    <span class="hours-day">Mon - Fri:</span>
+                                    <span>7:00 AM - 9:00 PM</span>
+                                    <span class="hours-day">Sat - Sun:</span>
+                                    <span>8:00 AM - 10:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="location-detail-item">
+                            <div class="location-detail-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="location-detail-text">
+                                <h4>Get In Touch</h4>
+                                <p>+91 286 222 0123<br>hello@velvetroast.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="location-action-buttons">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Govt.+Polytechnic+Porbandar+Gujarat" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration:none">
+                        <span class="btn-text">Get Directions</span>
+                        <span class="btn-glow"></span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="order.html" class="btn-secondary-glass">
+                        <i class="fa-solid fa-mug-hot"></i> Order Online
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Google Map Embedded Iframe -->
+            <div class="glass-card map-glass-card reveal-on-scroll">
+                <div class="map-iframe-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3708.5056101548253!2d69.65182898829121!3d21.644180429913458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395634c4e4d01da5%3A0xd7c395f74e89053d!2sGovt.%20Polytechnic%20Porbandar%2C%20Dut%20Sai%20Nagar%2C%20Porbandar%2C%20Gujarat%20360575!5e0!3m2!1sen!2sin!4v1784220453405!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ====== Testimonial Marquee Section (Simulating react-marquee) ====== -->
+        <section class="testimonials-section reveal-on-scroll">
+            <div class="testimonials-section-header">
+                <h2>What Our Guests Say</h2>
+                <p>Real experiences from coffee lovers and guests who visit our Porbandar sanctuary daily.</p>
+            </div>
+
+            <!-- Double-row Infinite Marquee Container -->
+            <div class="marquee-row-container">
+                
+                <!-- Row 1: Scrolling Left -->
+                <div class="marquee-wrapper">
+                    <div class="marquee-track marquee-track-left">
+                        <!-- Card 1 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/rough.webp" alt="Ken" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Ken Masters</span>
+                                    <span class="card-username">@kmasters</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Our productivity has nearly doubled since onboarding. Automation features removed repetitive tasks, allowing our team to focus on building instead of managing operations.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/albert.webp" alt="Kira" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Kira Athrun</span>
+                                    <span class="card-username">@kathrun</span>
+                                </div>
+                            </div>
+                            <p class="card-body">What surprised us most was how quickly our team adapted. Minimal learning curve, excellent documentation, and powerful features make it a must-have for modern SaaS companies.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/linda.webp" alt="Lirael" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Lirael Nassun</span>
+                                    <span class="card-username">@lnassun</span>
+                                </div>
+                            </div>
+                            <p class="card-body">This is easily one of the most reliable SaaS tools we've adopted. The UI is intuitive, integrations are seamless, and it saves us countless hours every week.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/jessica.webp" alt="Jessica" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Jessica</span>
+                                    <span class="card-username">@jessica</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Switching to this platform streamlined our entire workflow. Setup was effortless, performance improved instantly, and our team now ships features faster without worrying about infrastructure.</p>
+                        </div>
+                        
+                        <!-- DUPLICATE COPIES FOR INFINITE LOOP EFFECT -->
+                        <!-- Card 1 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/rough.webp" alt="Ken" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Ken Masters</span>
+                                    <span class="card-username">@kmasters</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Our productivity has nearly doubled since onboarding. Automation features removed repetitive tasks, allowing our team to focus on building instead of managing operations.</p>
+                        </div>
+                        <!-- Card 2 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/albert.webp" alt="Kira" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Kira Athrun</span>
+                                    <span class="card-username">@kathrun</span>
+                                </div>
+                            </div>
+                            <p class="card-body">What surprised us most was how quickly our team adapted. Minimal learning curve, excellent documentation, and powerful features make it a must-have for modern SaaS companies.</p>
+                        </div>
+                        <!-- Card 3 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/linda.webp" alt="Lirael" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Lirael Nassun</span>
+                                    <span class="card-username">@lnassun</span>
+                                </div>
+                            </div>
+                            <p class="card-body">This is easily one of the most reliable SaaS tools we've adopted. The UI is intuitive, integrations are seamless, and it saves us countless hours every week.</p>
+                        </div>
+                        <!-- Card 4 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/jessica.webp" alt="Jessica" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Jessica</span>
+                                    <span class="card-username">@jessica</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Switching to this platform streamlined our entire workflow. Setup was effortless, performance improved instantly, and our team now ships features faster without worrying about infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Scrolling Right -->
+                <div class="marquee-wrapper">
+                    <div class="marquee-track marquee-track-right">
+                        <!-- Card 1 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/jessica.webp" alt="Jessica" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Jessica</span>
+                                    <span class="card-username">@jessica</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Switching to this platform streamlined our entire workflow. Setup was effortless, performance improved instantly, and our team now ships features faster without worrying about infrastructure.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/jenny.webp" alt="Jenny" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Jenny</span>
+                                    <span class="card-username">@jenny</span>
+                                </div>
+                            </div>
+                            <p class="card-body">We evaluated multiple solutions, but this stood out immediately. It's fast, scalable, and thoughtfully designed for growing teams that need stability without added complexity.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/albert.webp" alt="Kira" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Kira Athrun</span>
+                                    <span class="card-username">@kathrun</span>
+                                </div>
+                            </div>
+                            <p class="card-body">What surprised us most was how quickly our team adapted. Minimal learning curve, excellent documentation, and powerful features make it a must-have for modern SaaS companies.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/rough.webp" alt="Ken" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Ken Masters</span>
+                                    <span class="card-username">@kmasters</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Our productivity has nearly doubled since onboarding. Automation features removed repetitive tasks, allowing our team to focus on building instead of managing operations.</p>
+                        </div>
+
+                        <!-- DUPLICATE COPIES FOR INFINITE LOOP EFFECT -->
+                        <!-- Card 1 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/jessica.webp" alt="Jessica" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Jessica</span>
+                                    <span class="card-username">@jessica</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Switching to this platform streamlined our entire workflow. Setup was effortless, performance improved instantly, and our team now ships features faster without worrying about infrastructure.</p>
+                        </div>
+                        <!-- Card 2 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/jenny.webp" alt="Jenny" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Jenny</span>
+                                    <span class="card-username">@jenny</span>
+                                </div>
+                            </div>
+                            <p class="card-body">We evaluated multiple solutions, but this stood out immediately. It's fast, scalable, and thoughtfully designed for growing teams that need stability without added complexity.</p>
+                        </div>
+                        <!-- Card 3 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/albert.webp" alt="Kira" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Kira Athrun</span>
+                                    <span class="card-username">@kathrun</span>
+                                </div>
+                            </div>
+                            <p class="card-body">What surprised us most was how quickly our team adapted. Minimal learning curve, excellent documentation, and powerful features make it a must-have for modern SaaS companies.</p>
+                        </div>
+                        <!-- Card 4 Duplicate -->
+                        <div class="marquee-card">
+                            <div class="card-profile-row">
+                                <img src="https://images.shadcnspace.com/assets/profiles/rough.webp" alt="Ken" class="card-avatar">
+                                <div class="card-names">
+                                    <span class="card-name">Ken Masters</span>
+                                    <span class="card-username">@kmasters</span>
+                                </div>
+                            </div>
+                            <p class="card-body">Our productivity has nearly doubled since onboarding. Automation features removed repetitive tasks, allowing our team to focus on building instead of managing operations.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== Site Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col footer-brand-col">
+                <div class="logo-wrapper">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px; color: var(--accent-gold);">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </div>
+                <p class="footer-tagline">
+                    Artisan single-origin beans, slow-roasted, and brewed to bring out flavor profiles that satisfy the soul.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="location.html">Location</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script src="home.js"></script>
+    <script src="location.js"></script>
+</body>
+</html>
