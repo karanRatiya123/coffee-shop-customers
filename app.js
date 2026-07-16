@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let registrationStep = 'details'; // 'details' | 'verification' | 'complete'
     let fieldTouched = {};
 
+    // If a session already exists, send the user straight to the home page
+    if (sessionStorage.getItem('isLoggedIn') === 'true') {
+        window.location.replace('home.html');
+        return;
+    }
+
     // --- DOM Elements ---
     const loginForm = document.getElementById('login-form');
     
@@ -590,9 +596,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Reset success modal triggered on complete
     getStartedBtn.addEventListener('click', () => {
-        // Reset everything
-        loginForm.reset();
-        setModeAndStep('login', 'details');
+        // Persist login session for the newly signed-up user
+        const signupEmail = emailInput.value;
+        const emailPrefix = signupEmail.split('@')[0];
+        const displayName = emailPrefix.charAt(0).toUpperCase() + emailPrefix.slice(1);
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('userEmail', signupEmail);
+        sessionStorage.setItem('userName', displayName);
+
+        // Redirect to the customer home page
+        window.location.href = 'home.html';
     });
 
     // Password Eye Toggles
@@ -685,20 +698,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.removeItem('rememberMe');
                 }
 
-                // Show authentication successful modal
-                successModal.classList.remove('hidden');
+                // Persist login session so protected pages can pick it up
                 const emailPrefix = emailInput.value.split('@')[0];
                 const displayName = emailPrefix.charAt(0).toUpperCase() + emailPrefix.slice(1);
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userEmail', emailInput.value);
+                sessionStorage.setItem('userName', displayName);
+
+                // Show authentication successful modal
+                successModal.classList.remove('hidden');
                 successMessage.textContent = `Welcome back, ${displayName}! Brewing your customized menu...`;
-                
-                // Simulating loading bar completion (2.2s)
+
+                // Simulating loading bar completion (2.2s), then redirect to home
                 setTimeout(() => {
                     successMessage.textContent = "Dashboard ready! Enjoy your Velvet Roast experience.";
                     setTimeout(() => {
-                        alert(`Welcome, ${displayName}! In a live environment, you would be redirected to your ordering dashboard.`);
-                        successModal.classList.add('hidden');
-                        loginForm.reset();
-                        setModeAndStep('login', 'details');
+                        // Honor a pre-login return destination if the user was bounced
+                        // from a protected page; otherwise default to home.html
+                        const returnTo = sessionStorage.getItem('returnTo');
+                        if (returnTo && returnTo !== 'index.html') {
+                            sessionStorage.removeItem('returnTo');
+                            window.location.href = returnTo;
+                        } else {
+                            window.location.href = 'home.html';
+                        }
                     }, 800);
                 }, 2200);
                 
