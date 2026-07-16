@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Creators | The Velvet Roast</title>
+    <meta name="description" content="Get in touch with The Velvet Roast. Meet our lead web developers Ratiya Karan and Pandya Naimish.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body class="home-page contact-page-body">
+
+    <!-- ====== Floating Ambient Glow ====== -->
+    <div class="ambient-glow-container" aria-hidden="true">
+        <div class="glow-blob glow-blob-1"></div>
+        <div class="glow-blob glow-blob-2"></div>
+        <div class="glow-blob glow-blob-3"></div>
+    </div>
+
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="order.html" class="nav-link">Order</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+        </nav>
+        <!-- Sign in link will be auto-replaced by auth.js if a session is present -->
+        <a href="index.html" class="header-cta">Sign In</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- ====== Main Contact Container ====== -->
+    <main class="contact-container">
+        
+        <div class="contact-grid">
+            
+            <!-- Left Side: Developer Showcase -->
+            <div class="developers-section reveal-on-scroll">
+                <div class="creators-header">
+                    <span class="brand-tag">Project Developers</span>
+                    <h1>Meet the Creators</h1>
+                    <p>This digital platform and web ordering experience was crafted and coded with passion by our developers.</p>
+                </div>
+
+                <div class="creators-list">
+                    <!-- Creator 1: Ratiya Karan -->
+                    <div class="glass-card creator-card">
+                        <div class="creator-avatar-box">
+                            <div class="creator-initials">RK</div>
+                        </div>
+                        <div class="creator-info">
+                            <div class="creator-name-row">
+                                <h3>Ratiya Karan</h3>
+                                <span class="creator-role">Lead Web Architect</span>
+                            </div>
+                            <p class="creator-bio">
+                                Specialized in frontend design, interactive animations, and responsive layouts. Karan bridges the gap between premium visual art and clean, performance-optimized code.
+                            </p>
+                            <div class="creator-skills">
+                                <span class="skill-badge">UI/UX Design</span>
+                                <span class="skill-badge">HTML5/CSS3</span>
+                                <span class="skill-badge">Vanilla JS</span>
+                                <span class="skill-badge">Micro-Animations</span>
+                            </div>
+                            <div class="creator-socials">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:karan@velvetroast.com" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Creator 2: Pandya Naimish -->
+                    <div class="glass-card creator-card">
+                        <div class="creator-avatar-box">
+                            <div class="creator-initials">PN</div>
+                        </div>
+                        <div class="creator-info">
+                            <div class="creator-name-row">
+                                <h3>Pandya Naimish</h3>
+                                <span class="creator-role">Full Stack Engineer</span>
+                            </div>
+                            <p class="creator-bio">
+                                Expert in state management, database systems, and secure API handling. Naimish constructs the core logic, POS integrations, and session stability features.
+                            </p>
+                            <div class="creator-skills">
+                                <span class="skill-badge">Node.js</span>
+                                <span class="skill-badge">State Management</span>
+                                <span class="skill-badge">Security Guard</span>
+                                <span class="skill-badge">POS Integration</span>
+                            </div>
+                            <div class="creator-socials">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:naimish@velvetroast.com" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Contact Form -->
+            <div class="glass-card contact-form-card reveal-on-scroll" style="position:relative">
+                
+                <!-- Success Message Overlay -->
+                <div id="contact-success-overlay" class="success-card-overlay">
+                    <div class="success-circle-icon">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. The creators and our customer service team will get back to you shortly.</p>
+                    <button type="button" id="close-success-btn" class="btn-secondary-glass">
+                        <i class="fa-solid fa-rotate-left"></i> Send Another Message
+                    </button>
+                </div>
+
+                <div class="contact-form-header">
+                    <h2>Get in Touch</h2>
+                    <p>Have an inquiry, feedback on our code, or just want to chat over coffee? Drop us a line below.</p>
+                </div>
+
+                <form id="contact-form" class="contact-form" novalidate autocomplete="off">
+                    
+                    <!-- Full Name -->
+                    <div class="form-group-floating" id="name-group">
+                        <input type="text" id="contact-name" placeholder=" " required autocomplete="name">
+                        <label for="contact-name">Full Name</label>
+                        <span class="form-error-text">Please enter your name.</span>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-group-floating" id="email-group">
+                        <input type="email" id="contact-email" placeholder=" " required autocomplete="email">
+                        <label for="contact-email">Email Address</label>
+                        <span class="form-error-text">Please enter a valid email address.</span>
+                    </div>
+
+                    <!-- Subject -->
+                    <div class="form-group-floating" id="subject-group">
+                        <input type="text" id="contact-subject" placeholder=" " required>
+                        <label for="contact-subject">Subject</label>
+                        <span class="form-error-text">Please enter a subject.</span>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-group-floating" id="message-group">
+                        <textarea id="contact-message" placeholder=" " required></textarea>
+                        <label for="contact-message">Your Message</label>
+                        <span class="form-error-text">Message cannot be empty.</span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="contact-submit-btn" class="submit-btn" style="border:none; cursor:pointer; width:100%; justify-content:center">
+                        <span id="submit-text" class="btn-text">Send Message</span>
+                        <span class="btn-glow"></span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- ====== Quick Info Strip ====== -->
+        <section class="contact-info-grid reveal-on-scroll">
+            
+            <!-- Strip 1: Phone -->
+            <div class="glass-card info-strip-card">
+                <div class="info-strip-icon">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="info-strip-details">
+                    <h4>Direct Call</h4>
+                    <p>+91 286 222 0123</p>
+                </div>
+            </div>
+
+            <!-- Strip 2: Email -->
+            <div class="glass-card info-strip-card">
+                <div class="info-strip-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="info-strip-details">
+                    <h4>Email Us</h4>
+                    <p>hello@velvetroast.com</p>
+                </div>
+            </div>
+
+            <!-- Strip 3: Location -->
+            <div class="glass-card info-strip-card">
+                <div class="info-strip-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="info-strip-details">
+                    <h4>Roastery Address</h4>
+                    <p>Porbandar, Gujarat, IN</p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </a>
+                <p class="footer-tagline">Artisan coffee, slow-brewed with care. A neighborhood ritual since 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== Page Scripts & Validation ====== -->
+    <script src="auth.js"></script>
+    <script src="home.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('contact-submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const successOverlay = document.getElementById('contact-success-overlay');
+            const closeSuccessBtn = document.getElementById('close-success-btn');
+            
+            const inputs = [
+                { el: document.getElementById('contact-name'), group: document.getElementById('name-group') },
+                { el: document.getElementById('contact-email'), group: document.getElementById('email-group'), isEmail: true },
+                { el: document.getElementById('contact-subject'), group: document.getElementById('subject-group') },
+                { el: document.getElementById('contact-message'), group: document.getElementById('message-group') }
+            ];
+
+            // Real-time error removal
+            inputs.forEach(input => {
+                input.el.addEventListener('input', () => {
+                    input.group.classList.remove('has-error');
+                });
+            });
+
+            // Email validation regex
+            const isValidEmail = (email) => {
+                const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return re.test(String(email).toLowerCase());
+            };
+
+            // Form Submit Logic
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let hasErrors = false;
+
+                inputs.forEach(input => {
+                    const value = input.el.value.trim();
+                    if (!value) {
+                        input.group.classList.add('has-error');
+                        hasErrors = true;
+                    } else if (input.isEmail && !isValidEmail(value)) {
+                        input.group.classList.add('has-error');
+                        hasErrors = true;
+                    } else {
+                        input.group.classList.remove('has-error');
+                    }
+                });
+
+                if (hasErrors) return;
+
+                // Animate Submit Button State
+                submitBtn.disabled = true;
+                submitText.textContent = "Sending Message...";
+                submitBtn.style.opacity = '0.8';
+
+                // Simulate server send delay, then show animated success overlay
+                setTimeout(() => {
+                    successOverlay.classList.add('visible');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitText.textContent = "Send Message";
+                    submitBtn.style.opacity = '1';
+                }, 1200);
+            });
+
+            // Reset Form and Overlay
+            closeSuccessBtn.addEventListener('click', () => {
+                successOverlay.classList.remove('visible');
+            });
+        });
+    </script>
+</body>
+</html>

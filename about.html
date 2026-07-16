@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | The Velvet Roast</title>
+    <meta name="description" content="Discover our story, values, micro-roasting craft, and the dedicated baristas behind your favorite daily neighborhood coffee sanctuary.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css">
+</head>
+<body class="home-page about-page-body">
+
+    <!-- ====== Floating Ambient Glow ====== -->
+    <div class="ambient-glow-container" aria-hidden="true">
+        <div class="glow-blob glow-blob-1"></div>
+        <div class="glow-blob glow-blob-2"></div>
+        <div class="glow-blob glow-blob-3"></div>
+    </div>
+
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="order.html" class="nav-link">Order</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <!-- Sign in link will be auto-replaced by auth.js if a session is present -->
+        <a href="index.html" class="header-cta">Sign In</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- ====== Main About Container ====== -->
+    <main class="about-container">
+        
+        <!-- ====== Hero Section (Our Origin) ====== -->
+        <section class="about-hero-grid">
+            <div class="about-hero-text reveal-on-scroll">
+                <span class="brand-tag">Our Origin Story</span>
+                <h1>Crafting moments, slow-roasted with care.</h1>
+                <p>
+                    Established in <strong>2026</strong>, The Velvet Roast emerged from a simple dream: to create an oasis where the fast-paced modern world slows down, and coffee is treated not as a commodity, but as a fine craft. 
+                </p>
+                <p>
+                    We began with a single vintage micro-roaster and a handful of exceptional, responsibly sourced green coffee lots. Today, our philosophy remains unchanged. We source only specialty-grade, single-origin Arabica beans, maintaining close relationships with smallholder farmers across the equator to ensure ethical compensation and ecological sustainability.
+                </p>
+                <p>
+                    Every morning, our master roasters examine humidity, temperature, and crack velocity, dialing in the perfect roast curve to unlock the unique terroir of each crop. When you sit in our sanctuary, you aren't just drinking coffee—you are experiencing a meticulous journey from cherry to cup.
+                </p>
+            </div>
+            <div class="about-hero-image-wrapper reveal-on-scroll">
+                <div class="about-hero-image-card">
+                    <img src="assets/about_roasting.jpg" alt="Freshly roasted coffee beans cooling on a metal tray of a professional roaster">
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Values Section ====== -->
+        <section class="values-section reveal-on-scroll">
+            <div class="section-header-center">
+                <span class="brand-tag">Our Core Pillars</span>
+                <h2 class="section-title">What makes us Velvet</h2>
+                <p class="section-lead text-center">Every detail, from bean selection to the design of our tables, is guided by our fundamental values.</p>
+            </div>
+
+            <div class="values-grid">
+                <!-- Value Card 1 -->
+                <div class="glass-card value-card">
+                    <div class="value-icon-box">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3>Specialty Quality</h3>
+                    <p>We source only green coffees scoring 85+ on the SCA scale. Every single lot is cupped, tested, and custom-profiled.</p>
+                </div>
+
+                <!-- Value Card 2 -->
+                <div class="glass-card value-card">
+                    <div class="value-icon-box">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3>True Sustainability</h3>
+                    <p>Direct relationships with farmers ensure premium prices. Our shop operations utilize compostable products and renewable resources.</p>
+                </div>
+
+                <!-- Value Card 3 -->
+                <div class="glass-card value-card">
+                    <div class="value-icon-box">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3>Precision Craft</h3>
+                    <p>Grinders are calibrated daily, weighing inputs and outputs down to the milligram. Brewing is where science and art meet.</p>
+                </div>
+
+                <!-- Value Card 4 -->
+                <div class="glass-card value-card">
+                    <div class="value-icon-box">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <h3>Sanctuary Spaces</h3>
+                    <p>We design dark, warm, and comforting environments that act as community hubs, study spaces, and cozy retreats.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Gallery Section ====== -->
+        <section class="gallery-section reveal-on-scroll">
+            <div class="section-header-center">
+                <span class="brand-tag">Visual Showcase</span>
+                <h2 class="section-title">Sanctuary Walkthrough</h2>
+                <p class="section-lead text-center">A glimpse into our roasting rooms, cozy corners, and handcrafted brews.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Gallery 1 -->
+                <div class="gallery-item">
+                    <img src="assets/about_barista.jpg" alt="Barista pouring steamed milk to craft elegant latte art">
+                    <div class="gallery-item-overlay">
+                        <h4>Latte Art & Extraction</h4>
+                        <p>Artistry In Motion</p>
+                    </div>
+                </div>
+
+                <!-- Gallery 2 -->
+                <div class="gallery-item">
+                    <img src="assets/about_interior.jpg" alt="Cozy coffee shop interior with warm lighting, brick walls, and modern glassmorphism panels">
+                    <div class="gallery-item-overlay">
+                        <h4>Warm Ambiance</h4>
+                        <p>Our Sanctuary Space</p>
+                    </div>
+                </div>
+
+                <!-- Gallery 3 -->
+                <div class="gallery-item">
+                    <img src="assets/about_roasting.jpg" alt="Macro shot of roasted coffee beans in cooling tray">
+                    <div class="gallery-item-overlay">
+                        <h4>Micro-Batch Roasting</h4>
+                        <p>Glistening Golden Beans</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Team Section ====== -->
+        <section class="team-section reveal-on-scroll">
+            <div class="section-header-center">
+                <span class="brand-tag">Meet the Craftsmen</span>
+                <h2 class="section-title">Our Roasting & Barista Team</h2>
+                <p class="section-lead text-center">The passionate individuals working daily to bring you the finest coffee experience.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Team 1 -->
+                <div class="glass-card team-card">
+                    <div class="team-avatar-wrapper">
+                        <div class="team-avatar-circle">
+                            <div class="team-avatar">AS</div>
+                        </div>
+                    </div>
+                    <span class="team-role">Founder &amp; Head Roaster</span>
+                    <h3>Aarav Sharma</h3>
+                    <p>Sourcing exceptional micro-lots globally and directing our sensory roasting profiles with 10+ years of roasting expertise.</p>
+                    <div class="team-socials">
+                        <a href="#" class="team-social-link" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="team-social-link" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="glass-card team-card">
+                    <div class="team-avatar-wrapper">
+                        <div class="team-avatar-circle">
+                            <div class="team-avatar">MP</div>
+                        </div>
+                    </div>
+                    <span class="team-role">Master Barista</span>
+                    <h3>Maya Patel</h3>
+                    <p>Champion barista and educator who ensures every milk texture is silky-smooth and pour quality meets the gold standard.</p>
+                    <div class="team-socials">
+                        <a href="#" class="team-social-link" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="team-social-link" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="glass-card team-card">
+                    <div class="team-avatar-wrapper">
+                        <div class="team-avatar-circle">
+                            <div class="team-avatar">VM</div>
+                        </div>
+                    </div>
+                    <span class="team-role">Head of Quality &amp; Brewing</span>
+                    <h3>Vikram Mehta</h3>
+                    <p>Sensory judge and QC manager who cups every roast batch to guarantee consistency, complexity, and purity of flavors.</p>
+                    <div class="team-socials">
+                        <a href="#" class="team-social-link" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="team-social-link" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CTA Banner Section ====== -->
+        <section class="cta-banner-section reveal-on-scroll">
+            <div class="glass-card cta-banner-card">
+                <h2>Ready to experience the craft?</h2>
+                <p>Browse our curated collection of signature espressos, slow brews, matchas, and fresh morning pastries.</p>
+                <div class="cta-buttons">
+                    <a href="order.html" class="submit-btn" style="text-decoration:none">
+                        <span class="btn-text">Order Ahead Now</span>
+                        <span class="btn-glow"></span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="menu.html" class="btn-secondary-glass">
+                        <i class="fa-solid fa-book-open"></i> Browse Full Menu
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </a>
+                <p class="footer-tagline">Artisan coffee, slow-brewed with care. A neighborhood ritual since 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>
