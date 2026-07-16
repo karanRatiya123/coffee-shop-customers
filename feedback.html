@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Feedback | The Velvet Roast</title>
+    <meta name="description" content="Share your experience at The Velvet Roast. Help us refine our artisan roasts and premium coffee service.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="feedback.css">
+</head>
+<body class="home-page feedback-page">
+
+    <!-- ====== Floating Ambient Glow ====== -->
+    <div class="ambient-glow-container" aria-hidden="true">
+        <div class="glow-blob glow-blob-1"></div>
+        <div class="glow-blob glow-blob-2"></div>
+        <div class="glow-blob glow-blob-3"></div>
+    </div>
+
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="order.html" class="nav-link">Order</a>
+            <a href="feedback.html" class="nav-link active">Feedback</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="home.html#location" class="nav-link">Location</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <!-- Sign in link will be auto-replaced by auth.js if a session is present -->
+        <a href="index.html" class="header-cta">Sign In</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- ====== Main Feedback Container ====== -->
+    <main class="feedback-container">
+        
+        <!-- Left Side: Form Content -->
+        <div class="feedback-form-column">
+            
+            <div class="feedback-header">
+                <span class="brand-tag">Guest Reviews</span>
+                <h1>Share your thoughts.</h1>
+                <p>We craft every cup with pride. Tell us how <span id="customer-greeting">friend</span>'s experience went, so we can keep perfecting our brews.</p>
+            </div>
+
+            <!-- Form Frosted Card -->
+            <div class="glass-card">
+                <form id="feedback-form" novalidate>
+                    
+                    <!-- Rating Stars -->
+                    <div class="rating-section">
+                        <span class="rating-label">Rate Your Visit</span>
+                        <div class="stars-row" role="radiogroup" aria-label="Star rating">
+                            <button type="button" class="star-btn" data-value="1" role="radio" aria-checked="false" aria-label="1 Star">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </button>
+                            <button type="button" class="star-btn" data-value="2" role="radio" aria-checked="false" aria-label="2 Stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </button>
+                            <button type="button" class="star-btn" data-value="3" role="radio" aria-checked="false" aria-label="3 Stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </button>
+                            <button type="button" class="star-btn" data-value="4" role="radio" aria-checked="false" aria-label="4 Stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </button>
+                            <button type="button" class="star-btn" data-value="5" role="radio" aria-checked="false" aria-label="5 Stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </button>
+                        </div>
+                        <div class="rating-text" id="rating-text">Select your star rating</div>
+                    </div>
+
+                    <!-- Category Chips -->
+                    <div class="category-section">
+                        <span class="rating-label">Category</span>
+                        <div class="chips-container" role="radiogroup" aria-label="Category Selection">
+                            <div class="category-chip selected" data-category="Food & Drinks" role="radio" aria-checked="true" tabindex="0">
+                                <span>☕</span> Food & Drinks
+                            </div>
+                            <div class="category-chip" data-category="Service" role="radio" aria-checked="false" tabindex="-1">
+                                <span>🛎️</span> Service
+                            </div>
+                            <div class="category-chip" data-category="Ambiance" role="radio" aria-checked="false" tabindex="-1">
+                                <span>✨</span> Ambiance
+                            </div>
+                            <div class="category-chip" data-category="Cleanliness" role="radio" aria-checked="false" tabindex="-1">
+                                <span>🧹</span> Cleanliness
+                            </div>
+                            <div class="category-chip" data-category="Other" role="radio" aria-checked="false" tabindex="-1">
+                                <span>💬</span> Other
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments Textarea -->
+                    <div class="form-group">
+                        <label for="feedback-comment" class="form-label">Review Details</label>
+                        <div class="textarea-wrapper">
+                            <textarea id="feedback-comment" class="glass-textarea" placeholder="Tell us what you loved, or how we can make your next brew even better..." maxlength="500"></textarea>
+                            <span class="char-counter" id="char-counter">0 / 500</span>
+                        </div>
+                    </div>
+
+                    <!-- Anonymous Flag -->
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label class="anonymous-row" for="anonymous-post">
+                            <input type="checkbox" id="anonymous-post" class="glass-checkbox">
+                            <span class="anonymous-label">Post this review anonymously</span>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="feedback-submit-btn">
+                        <span>Send Review</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Side: Statistics & Review Feed -->
+        <div class="reviews-board">
+            
+            <!-- Statistics glass card -->
+            <div class="stats-glass-card">
+                <div class="stats-summary">
+                    <span class="avg-rating-big" id="avg-rating-big">0.0</span>
+                    <div class="avg-stars" id="avg-stars">
+                        <!-- Filled by JS -->
+                    </div>
+                    <span class="total-ratings-label" id="total-ratings-label">Calculating...</span>
+                </div>
+
+                <!-- Distribution Bars -->
+                <div class="rating-bars">
+                    <!-- 5 Star Bar -->
+                    <div class="bar-row">
+                        <span class="bar-star-label">5 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 10px; height: 10px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="bar-fill-5"></div>
+                        </div>
+                        <span class="bar-pct-label" id="bar-pct-5">0%</span>
+                    </div>
+                    <!-- 4 Star Bar -->
+                    <div class="bar-row">
+                        <span class="bar-star-label">4 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 10px; height: 10px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="bar-fill-4"></div>
+                        </div>
+                        <span class="bar-pct-label" id="bar-pct-4">0%</span>
+                    </div>
+                    <!-- 3 Star Bar -->
+                    <div class="bar-row">
+                        <span class="bar-star-label">3 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 10px; height: 10px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="bar-fill-3"></div>
+                        </div>
+                        <span class="bar-pct-label" id="bar-pct-3">0%</span>
+                    </div>
+                    <!-- 2 Star Bar -->
+                    <div class="bar-row">
+                        <span class="bar-star-label">2 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 10px; height: 10px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="bar-fill-2"></div>
+                        </div>
+                        <span class="bar-pct-label" id="bar-pct-2">0%</span>
+                    </div>
+                    <!-- 1 Star Bar -->
+                    <div class="bar-row">
+                        <span class="bar-star-label">1 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 10px; height: 10px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="bar-fill-1"></div>
+                        </div>
+                        <span class="bar-pct-label" id="bar-pct-1">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Feed Header & Filters -->
+            <div class="reviews-filter-bar">
+                <h2 class="filter-title">Guest Reviews</h2>
+                
+                <div class="filter-groups-wrapper">
+                    <!-- Category Select -->
+                    <select id="filter-category" class="filter-select" aria-label="Filter reviews by category">
+                        <option value="all">All Categories</option>
+                        <option value="Food & Drinks">Food & Drinks</option>
+                        <option value="Service">Service</option>
+                        <option value="Ambiance">Ambiance</option>
+                        <option value="Cleanliness">Cleanliness</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    
+                    <!-- Stars Select -->
+                    <select id="filter-rating" class="filter-select" aria-label="Filter reviews by stars rating">
+                        <option value="all">All Ratings</option>
+                        <option value="5">5 Stars only</option>
+                        <option value="4">4 Stars only</option>
+                        <option value="3-below">3 Stars & below</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dynamic Reviews List -->
+            <div class="reviews-list" id="reviews-list">
+                <!-- Feed Card components injected dynamically by JS -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ====== Success Glass Modal Overlay ====== -->
+    <div class="success-modal-overlay" id="success-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="success-modal">
+            <div class="success-icon-wrapper">
+                <i class="fa-solid fa-check" style="font-size: 24px;"></i>
+            </div>
+            <h3 id="modal-title">Review Submitted</h3>
+            <p>Thank you for sharing your experience! Your review has been added to our live feed and sent to the POS feedback dashboard.</p>
+            <button class="success-modal-btn" id="close-success-btn">Done</button>
+        </div>
+    </div>
+
+    <!-- ====== Site Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col footer-brand-col">
+                <div class="logo-wrapper">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px; color: var(--accent-gold);">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </div>
+                <p class="footer-tagline">
+                    Artisan single-origin beans, slow-roasted, and brewed to bring out flavor profiles that satisfy the soul.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script src="home.js"></script>
+    <script src="feedback.js"></script>
+</body>
+</html>
