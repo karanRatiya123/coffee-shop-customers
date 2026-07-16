@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | The Velvet Roast</title>
+    <meta name="description" content="Sign in to your Velvet Roast account to order ahead, earn rewards, and discover artisan coffee crafted just for you.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Banner (Split Screen) -->
+        <div class="banner-panel">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+                <div class="brand-tag">Est. 2026</div>
+                <div>
+                    <h1 class="banner-title">Crafting moments, one cup at a time.</h1>
+                    <p class="banner-subtitle">Step into a space where aroma meets comfort, and every roast tells a story.</p>
+                </div>
+                <div class="quote-card">
+                    <p class="quote-text">"Coffee is a language in itself."</p>
+                    <span class="quote-author">— Jackie Chan</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Login Panel -->
+        <div class="login-panel">
+            <div class="login-container">
+                <!-- Alert Messages -->
+                <div id="general-success-alert" class="alert-box success-alert hidden">
+                    <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span id="general-success-text" class="alert-message"></span>
+                </div>
+                <div id="general-error-alert" class="alert-box error-alert hidden">
+                    <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span id="general-error-text" class="alert-message"></span>
+                </div>
+
+                <!-- Header -->
+                <header class="login-header" id="auth-header">
+                    <div class="logo-wrapper">
+                        <!-- Coffee logo SVG -->
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                            <line x1="6" y1="1" x2="6" y2="4" />
+                            <line x1="10" y1="1" x2="10" y2="4" />
+                            <line x1="14" y1="1" x2="14" y2="4" />
+                        </svg>
+                        <span class="logo-text">Velvet Roast</span>
+                    </div>
+                    <h2 id="greeting-title" class="greeting-title">Welcome Back</h2>
+                    <p id="greeting-subtitle" class="greeting-subtitle">We're brewing something special for you.</p>
+                </header>
+
+                <!-- Mode Toggle Tabs (only show for login/signup) -->
+                <div id="auth-tabs" class="auth-tabs">
+                    <button type="button" id="tab-login" class="tab-btn active">Login</button>
+                    <button type="button" id="tab-signup" class="tab-btn">Sign Up</button>
+                </div>
+
+                <!-- Main Form -->
+                <form id="login-form" class="login-form" novalidate>
+                    
+                    <!-- --- DETAILS STEP CONTAINER --- -->
+                    <div id="details-step" class="auth-step-container">
+                        <!-- Full Name (Signup Only) -->
+                        <div class="input-group hidden" id="group-name">
+                            <label for="name" class="input-label">Full Name</label>
+                            <div class="input-wrapper" id="name-wrapper">
+                                <span class="input-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                </span>
+                                <input type="text" id="name" class="form-input" placeholder="Full Name">
+                            </div>
+                            <span class="error-message" id="name-error">Name is required</span>
+                        </div>
+
+                        <!-- Email Input Group (Both) -->
+                        <div class="input-group" id="group-email">
+                            <label for="email" class="input-label">Email Address</label>
+                            <div class="input-wrapper" id="email-wrapper">
+                                <span class="input-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </span>
+                                <input type="email" id="email" class="form-input" placeholder="name@example.com" required autocomplete="email">
+                                <span class="validation-badge success-badge">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                </span>
+                            </div>
+                            <span class="error-message" id="email-error">Please enter a valid email address</span>
+                        </div>
+
+                        <!-- Password Input Group (Both) -->
+                        <div class="input-group" id="group-password">
+                            <div class="label-row">
+                                <label for="password" class="input-label">Password</label>
+                                <button type="button" id="forgot-password-link" class="forgot-link">Forgot password?</button>
+                            </div>
+                            <div class="input-wrapper" id="password-wrapper">
+                                <span class="input-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </span>
+                                <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                                <button type="button" id="password-toggle" class="password-toggle" aria-label="Toggle password visibility">
+                                    <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                                    <svg class="eye-on hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </button>
+                            </div>
+                            <span class="error-message" id="password-error">Password is required</span>
+                            
+                            <!-- Password Strength Indicator (Signup Only) -->
+                            <div id="password-strength" class="password-strength-container hidden">
+                                <div class="strength-bar-row">
+                                    <div class="strength-bar-track">
+                                        <div id="strength-bar-fill" class="strength-bar-fill"></div>
+                                    </div>
+                                    <span id="strength-text" class="strength-text">Very Weak</span>
+                                </div>
+                                <div id="strength-feedback" class="strength-feedback-grid"></div>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password (Signup Only) -->
+                        <div class="input-group hidden" id="group-confirm-password">
+                            <label for="confirm-password" class="input-label">Confirm Password</label>
+                            <div class="input-wrapper" id="confirm-password-wrapper">
+                                <span class="input-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </span>
+                                <input type="password" id="confirm-password" class="form-input" placeholder="••••••••">
+                                <button type="button" id="confirm-password-toggle" class="password-toggle" aria-label="Toggle password visibility">
+                                    <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                                    <svg class="eye-on hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </button>
+                            </div>
+                            <span class="error-message" id="confirm-password-error">Passwords do not match</span>
+                        </div>
+
+                        <!-- Phone Number (Signup Only) -->
+                        <div class="input-group hidden" id="group-phone">
+                            <label for="phone" class="input-label">Phone Number (Optional)</label>
+                            <div class="input-wrapper" id="phone-wrapper">
+                                <span class="input-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </span>
+                                <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000">
+                            </div>
+                            <span class="error-message" id="phone-error">Please enter a valid phone number</span>
+                        </div>
+
+                        <!-- Remember Me (Login Only) -->
+                        <div class="form-options" id="group-remember">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="remember-me">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Keep me signed in</span>
+                            </label>
+                        </div>
+
+                        <!-- Terms and Conditions (Signup Only) -->
+                        <div class="form-options hidden" id="group-terms">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="agree-terms">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">
+                                    I agree to the <a href="#" class="signup-link">Terms of Service</a> and <a href="#" class="signup-link">Privacy Policy</a>
+                                </span>
+                            </label>
+                            <span class="error-message" id="terms-error">You must agree to the terms and conditions</span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn" class="submit-btn">
+                            <span id="submit-btn-text" class="btn-text">Sign In</span>
+                            <span class="btn-glow"></span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </button>
+
+                        <!-- Social Section (Login Only) -->
+                        <div id="social-section">
+                            <div class="divider">
+                                <span>or continue with</span>
+                            </div>
+                            <div class="social-grid">
+                                <button type="button" class="social-btn" aria-label="Sign in with Google">
+                                    <svg viewBox="0 0 24 24" class="social-icon">
+                                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="social-btn" aria-label="Sign in with Apple">
+                                    <svg viewBox="0 0 24 24" class="social-icon" fill="#f5ebe2">
+                                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-.96.04-2.13.64-2.82 1.45-.6.7-1.13 1.84-1 2.94.99.08 2.17-.52 2.83-1.33Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- --- PASSWORD RECOVERY (RESET) STEP CONTAINER --- -->
+                    <div id="reset-step" class="auth-step-container hidden">
+                        <div class="step-header">
+                            <svg class="step-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3M18 5l3 3"/>
+                            </svg>
+                            <h3>Password Recovery</h3>
+                            <p class="step-header-desc">Enter your email address and we'll send you a link to reset your password.</p>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="reset-email" class="input-label">Email Address</label>
+                            <div class="input-wrapper" id="reset-email-wrapper">
+                                <span class="input-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </span>
+                                <input type="email" id="reset-email" class="form-input" placeholder="name@example.com">
+                            </div>
+                            <span class="error-message" id="reset-email-error">Please enter a valid email address</span>
+                        </div>
+                        
+                        <button type="submit" id="reset-submit-btn" class="submit-btn">
+                            <span class="btn-text">Send Reset Link</span>
+                            <span class="btn-glow"></span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </button>
+                        
+                        <div class="text-center mt-4">
+                            <button type="button" id="back-to-login-btn-1" class="text-btn">Back to Login</button>
+                        </div>
+                    </div>
+
+                    <!-- --- EMAIL VERIFICATION STEP CONTAINER --- -->
+                    <div id="verification-step" class="auth-step-container hidden">
+                        <div class="step-header">
+                            <svg class="step-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <h3>Verify Your Email</h3>
+                            <p class="step-header-desc">We've sent a 6-digit code to <span id="verification-target-email" style="font-weight: 500; color: var(--accent-gold);">your email</span></p>
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="input-wrapper" id="verification-wrapper">
+                                <input type="text" id="verification-code" class="form-input text-center tracking-widest text-2xl font-mono" placeholder="000000" maxlength="6">
+                            </div>
+                            <span class="error-message" id="verification-error" style="text-align: center;">Verification code must be 6 digits</span>
+                        </div>
+                        
+                        <button type="submit" id="verify-submit-btn" class="submit-btn">
+                            <span class="btn-text">Verify Email</span>
+                            <span class="btn-glow"></span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </button>
+                        
+                        <div class="text-center mt-4">
+                            <button type="button" id="back-to-details-btn" class="text-btn">Back to Details</button>
+                        </div>
+                    </div>
+
+                    <!-- --- COMPLETE STEP CONTAINER --- -->
+                    <div id="complete-step" class="auth-step-container hidden">
+                        <div class="complete-card">
+                            <div class="complete-icon-wrapper">
+                                <svg class="complete-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <h3>Welcome Aboard!</h3>
+                            <p>Your account has been created successfully.</p>
+                        </div>
+                        
+                        <button type="button" id="get-started-btn" class="submit-btn">
+                            <span class="btn-text">Get Started</span>
+                            <span class="btn-glow"></span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </button>
+                    </div>
+
+                </form>
+
+                <!-- Footer Sign Up -->
+                <footer class="login-footer" id="toggle-mode-footer">
+                    <p>New to Velvet Roast? <button type="button" id="toggle-mode-link" class="signup-link-btn">Create an account</button></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal (shown after successful simulated login) -->
+    <div id="success-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="success-icon-wrapper">
+                <svg class="success-coffee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                    <line x1="6" y1="1" x2="6" y2="4" />
+                    <line x1="10" y1="1" x2="10" y2="4" />
+                    <line x1="14" y1="1" x2="14" y2="4" />
+                </svg>
+            </div>
+            <h3>Authentication Successful</h3>
+            <p id="success-message">Welcome back! Brewing your dashboard...</p>
+            <div class="loading-bar">
+                <div class="loading-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
