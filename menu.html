@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu | The Velvet Roast</title>
+    <meta name="description" content="Browse our hand-crafted menu, from single-origin espressos to fresh artisan pastries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="menu-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+</head>
+<body class="menu-page-body">
+
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link active">Menu</a>
+            <a href="order.html" class="nav-link">Order</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="home.html#location" class="nav-link">Location</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <a href="index.html" class="header-cta">Sign In</a>
+    </header>
+
+    <!-- ====== Main Content Container ====== -->
+    <main class="menu-container">
+        
+        <!-- Menu Page Header -->
+        <div class="menu-page-header">
+            <div class="header-main-info">
+                <span class="brand-tag">Our Collection</span>
+                <h1 class="menu-title">Artisan Craft Menu</h1>
+                <p class="menu-subtitle">Explore our hand-brewed coffees, comforting teas, cold refreshments, and fresh house pastries.</p>
+            </div>
+            
+            <!-- Dynamic Search input & count label -->
+            <div class="menu-search-wrapper">
+                <div class="menu-search-input-group">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="view-menu-search" placeholder="Search our catalog..." oninput="filterMenuBySearch()">
+                </div>
+                <span class="view-menu-count" id="menu-item-count">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Statistics Row -->
+        <div class="view-menu-stats-row" id="menu-stats-row"></div>
+
+        <!-- Categories Filter Tabs -->
+        <div class="category-tabs-container" id="menu-category-tabs"></div>
+
+        <!-- Menu Item Grid -->
+        <div class="view-menu-grid" id="view-menu-grid"></div>
+
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div id="product-detail-modal" class="product-modal hidden">
+        <div class="product-modal-overlay" onclick="closeProductModal()"></div>
+        <div class="product-modal-content">
+            <button class="product-modal-close" onclick="closeProductModal()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="product-modal-grid">
+                <div class="product-modal-media">
+                    <img id="modal-product-img" src="" alt="Product image">
+                    <span id="modal-product-badge" class="view-menu-card-badge"></span>
+                </div>
+                <div class="product-modal-info">
+                    <span id="modal-product-category" class="view-menu-card-category"></span>
+                    <h2 id="modal-product-title" class="product-modal-title"></h2>
+                    <p id="modal-product-price" class="product-modal-price"></p>
+                    <p id="modal-product-desc" class="product-modal-desc"></p>
+                    
+                    <div class="product-modal-section">
+                        <h3>Ingredients</h3>
+                        <div id="modal-product-ingredients" class="ingredients-tags"></div>
+                    </div>
+                    
+                    <div class="product-modal-section">
+                        <h3>Nutrition (Per Serving)</h3>
+                        <div class="nutrition-grid">
+                            <div class="nutrition-card">
+                                <span class="nutrition-val" id="modal-nutrition-kcal"></span>
+                                <span class="nutrition-lbl">Calories</span>
+                            </div>
+                            <div class="nutrition-card">
+                                <span class="nutrition-val" id="modal-nutrition-caffeine"></span>
+                                <span class="nutrition-lbl">Caffeine</span>
+                            </div>
+                            <div class="nutrition-card">
+                                <span class="nutrition-val" id="modal-nutrition-sugar"></span>
+                                <span class="nutrition-lbl">Sugar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-modal-actions">
+                        <a href="order.html" class="submit-btn order-now-modal-btn">
+                            <span class="btn-text">Order Online</span>
+                            <span class="btn-glow"></span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"/>
+                                <path d="m12 5 7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </a>
+                <p class="footer-tagline">Artisan coffee, slow-brewed with care. A neighborhood ritual since 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== Page Scripts ====== -->
+    <script src="auth.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>
