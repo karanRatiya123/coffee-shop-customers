@@ -214,7 +214,7 @@ function openProductModal(id) {
 
   const orderBtn = document.querySelector('.order-now-modal-btn');
   if (orderBtn) {
-    orderBtn.href = `order.html?product=${item.id}`;
+    orderBtn.href = `../order/order.html?product=${item.id}`;
   }
 
   // Render ingredients

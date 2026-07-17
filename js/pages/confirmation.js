@@ -31,7 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Populate basic details in UI
     document.getElementById('conf-order-id').textContent = '#' + currentOrder.id;
-    document.getElementById('conf-pickup-time').textContent = currentOrder.pickupTime;
+    const pickupTimeEl = document.getElementById('conf-pickup-time');
+    if (pickupTimeEl) {
+        pickupTimeEl.textContent = currentOrder.pickupTime;
+    }
     document.getElementById('conf-payment-method').textContent = currentOrder.paymentMethod;
     document.getElementById('conf-total').textContent = `₹${currentOrder.total.toFixed(2)}`;
 
@@ -45,45 +48,26 @@ function simulateLiveTracking(orderId) {
     
     const stepPlaced = document.getElementById('step-placed');
     const stepBrewing = document.getElementById('step-brewing');
-    const stepReady = document.getElementById('step-ready');
 
     // Stage 1: Placed (already active/completed by default)
     // We update the state transition timers
     
-    // Stage 2: Brewing after 6 seconds
+    // Stage 2: Brewing & Ready after 6 seconds
     setTimeout(() => {
         // UI updates
-        if (progressFill) progressFill.style.width = '50%';
-        if (statusLabel) statusLabel.textContent = 'Brewing In Progress';
+        if (progressFill) progressFill.style.width = '100%';
+        if (statusLabel) {
+            statusLabel.textContent = 'Brewing Completed! Ready';
+            statusLabel.style.color = 'var(--success-color)';
+        }
         
         if (stepPlaced) {
             stepPlaced.classList.add('completed');
             stepPlaced.classList.remove('active');
         }
         if (stepBrewing) {
-            stepBrewing.classList.add('active');
-        }
-
-        // Save progress update to database
-        updateOrderStatusInStorage(orderId, 'processing');
-    }, 6000);
-
-    // Stage 3: Ready for collection after 15 seconds
-    setTimeout(() => {
-        // UI updates
-        if (progressFill) progressFill.style.width = '100%';
-        if (statusLabel) {
-            statusLabel.textContent = 'Ready for Pickup!';
-            statusLabel.style.color = 'var(--success-color)';
-        }
-        
-        if (stepBrewing) {
             stepBrewing.classList.add('completed');
-            stepBrewing.classList.remove('active');
-        }
-        if (stepReady) {
-            stepReady.classList.add('completed');
-            stepReady.classList.add('active');
+            stepBrewing.classList.add('active');
         }
 
         // Dynamic Header Title update
@@ -92,7 +76,7 @@ function simulateLiveTracking(orderId) {
 
         // Save progress update to database
         updateOrderStatusInStorage(orderId, 'ready');
-    }, 15000);
+    }, 6000);
 }
 
 // Helper to persist updated order statuses to order history database

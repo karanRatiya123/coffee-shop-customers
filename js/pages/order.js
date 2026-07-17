@@ -167,8 +167,8 @@ function triggerAddItem(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    // Check if product requires customization (Coffee, Tea, and Cold Drinks usually do)
-    const requiresCustomization = ['Coffee', 'Tea', 'Cold Drinks'].includes(product.category);
+    // Check if product requires customization (disabled to add items directly)
+    const requiresCustomization = false;
     
     if (requiresCustomization) {
         openCustomizer(product);
