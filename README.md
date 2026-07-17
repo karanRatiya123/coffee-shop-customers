@@ -21,41 +21,49 @@ A premium, highly interactive customer authentication interface for **The Velvet
 
 ```
 CUSTOMER/
+├── assets/                  - Theme and gallery images
+│   ├── about_barista.jpg
+│   ├── about_interior.jpg
+│   ├── about_roasting.jpg
+│   └── coffee_shop_login_banner.jpg
 ├── pages/
-│   ├── auth/index.html       - Login/Signup page
-│   ├── main/home.html        - Main dashboard
+│   ├── auth/
+│   │   ├── index.html       - Login/Signup portal
+│   │   └── auth.html        - Password recovery / auxiliary auth
+│   ├── main/home.html        - Main dashboard page
 │   ├── menu/menu.html        - Product catalog
 │   ├── order/
-│   │   ├── order.html       - Current order
-│   │   ├── checkout.html    - Payment
-│   │   └── confirmation.html - Order success
+│   │   ├── order.html       - Cart and express ordering
+│   │   ├── checkout.html    - Billing and payment
+│   │   └── confirmation.html - Order progress and live status tracker
 │   ├── company/
 │   │   ├── about.html       - About Us
-│   │   └── contact.html     - Contact
+│   │   └── contact.html     - Contact Us
 │   └── customer/
-│       ├── feedback.html    - Leave feedback
-│       └── location.html    - Find us
+│       ├── feedback.html    - Feedback form
+│       └── location.html    - Outlet finder map
 ├── css/
-│   ├── main.css             - Global styles
-│   ├── menu.css            - Menu page styles
-│   ├── order.css           - Order pages styles
-│   ├── feedback.css        - Feedback page styles
-│   ├── location.css        - Location page styles
-│   ├── about.css           - About page styles
-│   └── contact.css         - Contact page styles
+│   ├── main.css             - Core variables & layouts
+│   ├── menu.css            - Menu catalog page styles
+│   ├── order.css           - Order & checkout pages styles
+│   ├── feedback.css        - Feedback page styling
+│   ├── location.css        - Location finder page styling
+│   ├── about.css           - About page styling
+│   └── contact.css         - Contact page styling
 ├── js/
 │   ├── app.js              - Main app logic
-│   ├── auth/auth.js        - Authentication
+│   ├── auth/auth.js        - Session guard and path fixer utility
 │   ├── pages/
-│   │   ├── home.js         - Home page
-│   │   ├── menu.js         - Menu page
-│   │   ├── order.js        - Order page
-│   │   ├── checkout.js     - Checkout page
-│   │   ├── confirmation.js - Confirmation page
-│   │   ├── feedback.js     - Feedback page
-│   │   └── location.js     - Location page
-│   └── data/products.js    - Product data
-└── README.md
+│   │   ├── home.js         - Home/landing page logic
+│   │   ├── menu.js         - Menu detail modal and catalog views
+│   │   ├── order.js        - Cart, coupon and direct order logic
+│   │   ├── checkout.js     - Checkout forms and processing
+│   │   ├── confirmation.js - Simulated tracker updates
+│   │   ├── feedback.js     - Feedback form verification
+│   │   └── location.js     - Location map updates
+│   └── data/products.js    - Product data structures
+├── index.html               - Root landing page
+└── README.md                - Documentation
 ```
 
 ## 🚀 Getting Started
