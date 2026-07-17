@@ -13,6 +13,9 @@ A premium, highly interactive customer authentication interface for **The Velvet
     *   **Completion Screen**: A premium success state checkmark card.
     *   **Password Reset**: Recover account credentials page redirecting back to login.
 *   **Interactive Micro-Animations**: Glowing cursor clicks, floating aroma steam particles, button sweeping reflections, validation indicators, and form-shaking errors.
+*   **Direct Catalog Ordering**: Quickly add any beverage or food directly to your cart without tedious size, milk, or extras prompts.
+*   **Simplified Checkout**: Streamlined checkout flow with preconfigured location details and no manual pickup time selections required.
+*   **2-Step Live Tracker**: Real-time progress tracker on order confirmation dynamically animates from "Placed" to "Brewing Completed" in 6 seconds.
 
 ## 📂 File Layout
 
