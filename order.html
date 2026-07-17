@@ -4,72 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Online | The Velvet Roast</title>
-    <meta name="description" content="Online ordering is brewing. Skip the line and pick up your favorites soon.">
+    <meta name="description" content="Skip the line. Order your favorite handcrafted coffees and pastries online for quick pickup.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            overflow-y: auto;
-            height: auto;
-            min-height: 100vh;
-            background-color: var(--bg-primary);
-        }
-        .stub {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 1.5rem 4rem;
-        }
-        .stub-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            text-align: center;
-            max-width: 460px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .stub-icon {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 1.5rem;
-            background: var(--accent-gold-glow);
-            border: 1px solid rgba(201, 157, 102, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-gold);
-        }
-        .stub-icon svg { width: 36px; height: 36px; }
-        .stub-card h2 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin: 0.75rem 0 0.75rem;
-            line-height: 1.25;
-        }
-        .stub-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        .stub-actions {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-    </style>
+    <link rel="stylesheet" href="order-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="order-page-body">
+    <!-- ====== Site Header ====== -->
     <header class="site-header">
         <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
             <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -93,30 +37,236 @@
         <a href="index.html" class="header-cta">Sign In</a>
     </header>
 
-    <main class="stub">
-        <div class="stub-card">
-            <div class="stub-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="21" r="1"/>
-                    <circle cx="20" cy="21" r="1"/>
-                    <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>
-                </svg>
+    <main class="order-container">
+        <!-- Page Header -->
+        <div class="order-page-header">
+            <div class="order-header-info">
+                <span class="brand-tag">Online Express</span>
+                <h1 class="order-title" id="page-view-title">Order Online</h1>
+                <p class="order-subtitle" id="page-view-desc">Select your favorites, customize to your taste, and pick up fresh at our counter.</p>
             </div>
-            <span class="brand-tag">Coming Soon</span>
-            <h2>Online ordering is brewing.</h2>
-            <p>We're polishing our ordering experience. Soon you'll be able to skip the line and pick up your favorites in minutes.</p>
-            <div class="stub-actions">
-                <a href="home.html" class="submit-btn">
-                    <span class="btn-text">Back to Home</span>
+            <div class="order-header-actions">
+                <button type="button" class="history-toggle-btn" id="toggle-order-view-btn" onclick="toggleOrderView()">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span id="toggle-btn-text">Order History</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notification Alerts -->
+        <div id="order-alert-success" class="alert-box success-alert hidden" style="margin-bottom: 2rem;">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span id="order-alert-success-text" class="alert-message"></span>
+        </div>
+        <div id="order-alert-error" class="alert-box error-alert hidden" style="margin-bottom: 2rem;">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span id="order-alert-error-text" class="alert-message"></span>
+        </div>
+
+        <!-- ================= MAIN ORDER VIEW ================= -->
+        <div id="menu-order-view" class="order-layout">
+            <!-- Left Side: Menu Grid & Controls -->
+            <div class="order-feed">
+                <div class="order-controls">
+                    <!-- Categories tabs slider -->
+                    <div class="order-categories" id="order-categories-slider">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="order-items-grid" id="order-grid">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Right Side: Sidebar Cart -->
+            <aside class="cart-sidebar">
+                <div class="cart-title-row">
+                    <h2 class="cart-title">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Your Order</span>
+                    </h2>
+                    <button type="button" class="clear-cart-btn" onclick="clearCart()">Clear All</button>
+                </div>
+
+                <!-- Cart items scrolling list -->
+                <div class="cart-items-list" id="cart-items-container">
+                    <!-- Filled dynamically -->
+                </div>
+
+                <!-- Summary & Checkout elements -->
+                <div class="cart-checkout-section" id="cart-summary-section">
+                    <div class="cart-summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">₹0.00</span>
+                    </div>
+                    
+                    <!-- Coupon code block -->
+                    <div id="coupon-area">
+                        <div class="cart-coupon-row">
+                            <input type="text" class="coupon-input" id="coupon-code-input" placeholder="Coupon Code (e.g. VELVET20)" style="text-transform: uppercase;">
+                            <button type="button" class="coupon-btn" onclick="applyCoupon()">Apply</button>
+                        </div>
+                    </div>
+                    <div id="applied-coupon-badge" class="coupon-badge hidden">
+                        <span>Code <strong id="applied-coupon-name"></strong> applied (<span id="coupon-discount-percentage"></span>% off)</span>
+                        <button type="button" onclick="removeCoupon()"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+
+                    <div class="cart-summary-row discount hidden" id="discount-summary-row">
+                        <span>Discount</span>
+                        <span id="cart-discount">-₹0.00</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Estimated Tax (5%)</span>
+                        <span id="cart-tax">₹0.00</span>
+                    </div>
+                    <div class="cart-summary-row total">
+                        <span>Total Amount</span>
+                        <span id="cart-total">₹0.00</span>
+                    </div>
+
+                    <div class="pickup-time-row">
+                        <label for="pickup-time-select">Estimated Pickup Time</label>
+                        <select id="pickup-time-select" class="pickup-select">
+                            <!-- Filled dynamically starting from current time + 15 mins -->
+                        </select>
+                    </div>
+
+                    <button type="button" class="submit-btn checkout-btn" id="proceed-checkout-btn" onclick="proceedToCheckout()">
+                        <span class="btn-text">Proceed to Checkout</span>
+                        <span class="btn-glow"></span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </aside>
+        </div>
+
+        <!-- ================= ORDER HISTORY VIEW ================= -->
+        <div id="history-order-view" class="order-history-view hidden">
+            <!-- Order history cards container -->
+            <div id="history-list-container">
+                <!-- Filled dynamically by JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- ====== Customization Modal ====== -->
+    <div class="cust-modal" id="customizer-modal">
+        <div class="cust-overlay" onclick="closeCustomizer()"></div>
+        <div class="cust-content">
+            <button type="button" class="cust-close-btn" onclick="closeCustomizer()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="cust-header" id="cust-modal-header" style="background-image: url('');">
+                <div class="cust-header-overlay"></div>
+                <div class="cust-header-info">
+                    <span class="cust-category" id="cust-modal-category">Coffee</span>
+                    <h2 class="cust-title" id="cust-modal-title">Cappuccino</h2>
+                </div>
+            </div>
+            
+            <div class="cust-body">
+                <!-- Options will be populated here by JS dynamically -->
+                <div id="cust-options-container">
+                    <!-- Standard options for Coffee: Size, Milk, Extras -->
+                </div>
+                
+                <!-- Special Instructions -->
+                <div>
+                    <h3 class="cust-section-title">Special Instructions</h3>
+                    <textarea class="cust-instructions-area" id="cust-special-instructions" rows="2" placeholder="E.g., extra hot, less sweet, no foam..."></textarea>
+                </div>
+            </div>
+
+            <div class="cust-footer">
+                <div class="cust-price-wrapper">
+                    <span class="cust-price-label">Price</span>
+                    <span class="cust-total-price" id="cust-modal-total-price">₹120.00</span>
+                </div>
+                <button type="button" class="submit-btn cust-add-btn" id="add-customized-to-cart-btn" onclick="addCustomizedItemToCart()">
+                    <span class="btn-text">Add to Order</span>
                     <span class="btn-glow"></span>
-                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"/>
-                        <path d="m12 5 7 7-7 7"/>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </a>
+                <p class="footer-tagline">Artisan coffee, slow-brewed with care. A neighborhood ritual since 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                     </svg>
                 </a>
             </div>
         </div>
-    </main>
+    </footer>
+
+    <!-- ====== Page Scripts ====== -->
     <script src="auth.js"></script>
+    <script src="products.js"></script>
+    <script src="order.js"></script>
 </body>
 </html>

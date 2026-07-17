@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | The Velvet Roast</title>
+    <meta name="description" content="Complete your online artisan coffee order. Skip the queue and pick up fresh.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="order-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        .checkout-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8.5rem 2rem 4rem;
+        }
+        
+        .checkout-section-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkout-section-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .checkout-section-title i {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .payment-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .payment-methods-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .payment-method-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-method-card input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .payment-method-card i {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .payment-method-card span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .payment-method-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .payment-method-card:has(input:checked) {
+            border-color: var(--accent-gold);
+            background: var(--accent-gold-glow);
+        }
+
+        .payment-method-card:has(input:checked) i {
+            color: var(--accent-gold);
+        }
+
+        /* Input subfields for payment information */
+        .payment-details-panel {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .payment-details-panel.active {
+            display: block;
+        }
+
+        .checkout-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .checkout-back-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Order Summary Card Styles */
+        .order-summary-sidebar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem;
+            position: sticky;
+            top: 8.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-item-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+
+        .summary-item-info {
+            flex-grow: 1;
+            padding-right: 1rem;
+        }
+
+        .summary-item-title {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .summary-item-options {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.15rem;
+        }
+
+        .summary-item-price {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .summary-totals {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body class="order-page-body">
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="order.html" class="nav-link active">Order</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <a href="index.html" class="header-cta">Sign In</a>
+    </header>
+
+    <main class="checkout-container">
+        <!-- Back Link -->
+        <a href="order.html" class="checkout-back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Edit Order / Back to Menu</span>
+        </a>
+
+        <!-- Page title -->
+        <h1 class="order-title" style="margin-bottom: 2rem;">Secure Checkout</h1>
+
+        <!-- Error notification box -->
+        <div id="checkout-alert-error" class="alert-box error-alert hidden" style="margin-bottom: 2rem;">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span id="checkout-alert-error-text" class="alert-message"></span>
+        </div>
+
+        <!-- Form and summary grid layout -->
+        <form id="checkout-form" class="checkout-grid" novalidate onsubmit="submitCheckout(event)">
+            <!-- Left Panel: Details Form -->
+            <div class="checkout-details-feed">
+                <!-- Section 1: Pickup Information -->
+                <div class="checkout-section-box">
+                    <h2 class="checkout-section-title">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Pickup Information</span>
+                    </h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; flex-wrap: wrap;">
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label class="input-label">Pickup Location</label>
+                            <div class="input-wrapper disabled" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-secondary); opacity: 0.85; padding: 0.8rem 1rem;">
+                                <i class="fa-solid fa-map-location-dot" style="margin-right: 0.5rem; color: var(--accent-gold);"></i>
+                                <span>Velvet Roast Connaught Place</span>
+                            </div>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label class="input-label">Pickup Time</label>
+                            <div class="input-wrapper disabled" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-secondary); opacity: 0.85; padding: 0.8rem 1rem;">
+                                <i class="fa-solid fa-hourglass-start" style="margin-right: 0.5rem; color: var(--accent-gold);"></i>
+                                <span id="checkout-pickup-time-display">00:00 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Customer Details -->
+                <div class="checkout-section-box">
+                    <h2 class="checkout-section-title">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Contact Information</span>
+                    </h2>
+
+                    <div class="input-group" id="group-cust-name" style="margin-bottom: 1.25rem;">
+                        <label for="cust-name" class="input-label">Full Name</label>
+                        <div class="input-wrapper" id="cust-name-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </span>
+                            <input type="text" id="cust-name" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        <span class="error-message" id="cust-name-error" style="display: none;">Name is required</span>
+                    </div>
+
+                    <div class="input-group" id="group-cust-phone" style="margin-bottom: 0;">
+                        <label for="cust-phone" class="input-label">Mobile Number</label>
+                        <div class="input-wrapper" id="cust-phone-wrapper">
+                            <span class="input-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+                            <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. +91 9876543210" required>
+                        </div>
+                        <span class="error-message" id="cust-phone-error" style="display: none;">A valid phone number is required</span>
+                    </div>
+                </div>
+
+                <!-- Section 3: Payment Method -->
+                <div class="checkout-section-box">
+                    <h2 class="checkout-section-title">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span>Select Payment Method</span>
+                    </h2>
+
+                    <div class="payment-methods-grid">
+                        <label class="payment-method-card">
+                            <input type="radio" name="payment-method" value="Cash" checked onchange="togglePaymentFields()">
+                            <i class="fa-solid fa-store"></i>
+                            <span>Pay at Counter</span>
+                        </label>
+                        
+                        <label class="payment-method-card">
+                            <input type="radio" name="payment-method" value="UPI" onchange="togglePaymentFields()">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>UPI Express</span>
+                        </label>
+
+                        <label class="payment-method-card">
+                            <input type="radio" name="payment-method" value="Card" onchange="togglePaymentFields()">
+                            <i class="fa-regular fa-credit-card"></i>
+                            <span>Credit/Debit Card</span>
+                        </label>
+                    </div>
+
+                    <!-- Pay at Counter Info -->
+                    <div id="payment-cash-panel" class="payment-details-panel active">
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; font-weight: 300;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--accent-gold); margin-right: 0.3rem;"></i>
+                            Place your order now and pay securely using Cash, Card, or UPI at our pick-up counter when you collect your order.
+                        </p>
+                    </div>
+
+                    <!-- UPI Details -->
+                    <div id="payment-upi-panel" class="payment-details-panel">
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label for="payment-upi-id" class="input-label">UPI ID (e.g. name@okhdfcbank)</label>
+                            <div class="input-wrapper" id="upi-wrapper">
+                                <span class="input-icon"><i class="fa-solid fa-qrcode"></i></span>
+                                <input type="text" id="payment-upi-id" class="form-input" placeholder="username@upi">
+                            </div>
+                            <span class="error-message" id="upi-error" style="display: none;">Please enter a valid UPI ID structure</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div id="payment-card-panel" class="payment-details-panel">
+                        <div class="input-group" style="margin-bottom: 1rem;">
+                            <label for="card-num" class="input-label">Card Number</label>
+                            <div class="input-wrapper" id="card-num-wrapper">
+                                <span class="input-icon"><i class="fa-regular fa-credit-card"></i></span>
+                                <input type="text" id="card-num" class="form-input" placeholder="4111 2222 3333 4444" maxlength="19">
+                            </div>
+                            <span class="error-message" id="card-num-error" style="display: none;">Valid card number is required</span>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="input-group" style="margin-bottom: 0;">
+                                <label for="card-expiry" class="input-label">Expiry Date</label>
+                                <div class="input-wrapper" id="card-expiry-wrapper">
+                                    <input type="text" id="card-expiry" class="form-input" placeholder="MM/YY" maxlength="5" style="text-align: center;">
+                                </div>
+                                <span class="error-message" id="card-expiry-error" style="display: none;">Invalid expiry date</span>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 0;">
+                                <label for="card-cvv" class="input-label">CVV</label>
+                                <div class="input-wrapper" id="card-cvv-wrapper">
+                                    <input type="password" id="card-cvv" class="form-input" placeholder="***" maxlength="3" style="text-align: center;">
+                                </div>
+                                <span class="error-message" id="card-cvv-error" style="display: none;">Invalid CVV</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Sticky Order Summary -->
+            <aside class="checkout-summary-col">
+                <div class="order-summary-sidebar">
+                    <h3 class="checkout-section-title" style="border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 0.75rem;">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>Order Summary</span>
+                    </h3>
+
+                    <!-- Cart Item Summary list -->
+                    <div id="checkout-items-list">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Totals Block -->
+                    <div class="summary-totals">
+                        <div class="cart-summary-row">
+                            <span>Subtotal</span>
+                            <span id="checkout-subtotal">₹0.00</span>
+                        </div>
+                        <div class="cart-summary-row discount hidden" id="checkout-discount-row">
+                            <span>Coupon Discount</span>
+                            <span id="checkout-discount">-₹0.00</span>
+                        </div>
+                        <div class="cart-summary-row">
+                            <span>GST (5%)</span>
+                            <span id="checkout-tax">₹0.00</span>
+                        </div>
+                        <div class="cart-summary-row total" style="margin-bottom: 1.5rem;">
+                            <span>Total Due</span>
+                            <span id="checkout-total" style="color: var(--accent-gold);">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn checkout-btn" id="place-order-btn">
+                        <span class="btn-text">Place Pickup Order</span>
+                        <span class="btn-glow"></span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </aside>
+        </form>
+    </main>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </a>
+                <p class="footer-tagline">Artisan coffee, slow-brewed with care. A neighborhood ritual since 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Visit</h5>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Account</h5>
+                <ul>
+                    <li><a href="index.html">Sign In</a></li>
+                    <li><a href="index.html">Create Account</a></li>
+                    <li><a href="#">Loyalty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- ====== Page Scripts ====== -->
+    <script src="auth.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

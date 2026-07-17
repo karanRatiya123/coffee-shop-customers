@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | The Velvet Roast</title>
+    <meta name="description" content="Thank you for ordering with The Velvet Roast. Track your pickup order progress live.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="order-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        .conf-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 9rem 1.5rem 4rem;
+        }
+
+        .conf-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .conf-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-gold-hover) 100%);
+        }
+
+        .conf-success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-gold-glow);
+            border: 1.5px solid rgba(201, 157, 102, 0.3);
+            color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 25px rgba(201, 157, 102, 0.15);
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(201, 157, 102, 0.15); }
+            50% { box-shadow: 0 0 30px rgba(201, 157, 102, 0.35); }
+        }
+
+        .conf-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .conf-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        /* Live Status Tracker */
+        .live-tracker-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .tracker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.75rem;
+        }
+
+        .tracker-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tracker-status-text {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .tracker-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 1.5rem 0.5rem 0.5rem;
+        }
+
+        .tracker-timeline::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 0;
+        }
+
+        .timeline-progress-bar {
+            position: absolute;
+            top: 10px;
+            left: 5%;
+            width: 0%; /* Updates dynamically to 50% then 100% */
+            height: 2px;
+            background: var(--accent-gold);
+            z-index: 1;
+            transition: width 1s ease-in-out;
+        }
+
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 30%;
+        }
+
+        .step-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-step.active .step-dot {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: var(--accent-gold-glow);
+            box-shadow: 0 0 10px rgba(201, 157, 102, 0.4);
+        }
+
+        .timeline-step.active .step-label {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .timeline-step.completed .step-dot {
+            border-color: var(--accent-gold);
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        .timeline-step.completed .step-label {
+            color: var(--accent-gold);
+        }
+
+        /* Order Details in Card */
+        .conf-details-box {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .conf-details-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .conf-details-row.total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .conf-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .conf-secondary-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .conf-secondary-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body class="order-page-body">
+    <!-- ====== Site Header ====== -->
+    <header class="site-header">
+        <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+            <span class="logo-text">Velvet Roast</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="order.html" class="nav-link active">Order</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <a href="index.html" class="header-cta">Sign In</a>
+    </header>
+
+    <main class="conf-container">
+        <div class="conf-card">
+            <!-- Icon -->
+            <div class="conf-success-icon">
+                <i class="fa-solid fa-mug-hot"></i>
+            </div>
+
+            <!-- Header info -->
+            <h1 class="conf-title">Brewing in Progress</h1>
+            <p class="conf-subtitle">Order <strong id="conf-order-id">#0000</strong> placed successfully. We are crafting your selections now.</p>
+
+            <!-- Live Status Tracker -->
+            <div class="live-tracker-box">
+                <div class="tracker-header">
+                    <span class="tracker-title">Live Tracking</span>
+                    <span class="tracker-status-text" id="live-status-label">Order Placed</span>
+                </div>
+                <div class="tracker-timeline">
+                    <!-- Progress fill bar -->
+                    <div class="timeline-progress-bar" id="timeline-progress"></div>
+                    
+                    <!-- Step 1: Placed -->
+                    <div class="timeline-step active" id="step-placed">
+                        <div class="step-dot"><i class="fa-solid fa-check"></i></div>
+                        <span class="step-label">Placed</span>
+                    </div>
+
+                    <!-- Step 2: Brewing -->
+                    <div class="timeline-step" id="step-brewing">
+                        <div class="step-dot"><i class="fa-solid fa-fire-burner"></i></div>
+                        <span class="step-label">Brewing</span>
+                    </div>
+
+                    <!-- Step 3: Ready -->
+                    <div class="timeline-step" id="step-ready">
+                        <div class="step-dot"><i class="fa-solid fa-store"></i></div>
+                        <span class="step-label">Ready for Pickup</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details Summarized -->
+            <div class="conf-details-box">
+                <h3 class="checkout-section-title" style="font-size: 1.15rem; margin-bottom: 0.75rem; border-bottom: 1px dotted var(--border-color); padding-bottom: 0.5rem;">
+                    Order Specifications
+                </h3>
+                <div class="conf-details-row">
+                    <span>Estimated Pickup Time</span>
+                    <strong id="conf-pickup-time" style="color: var(--accent-gold);">00:00 AM</strong>
+                </div>
+                <div class="conf-details-row">
+                    <span>Pickup Location</span>
+                    <span>Velvet Roast Connaught Place</span>
+                </div>
+                <div class="conf-details-row">
+                    <span>Payment Method</span>
+                    <span id="conf-payment-method">Cash</span>
+                </div>
+                <div class="conf-details-row total">
+                    <span>Total Amount</span>
+                    <span id="conf-total">₹0.00</span>
+                </div>
+            </div>
+
+            <!-- CTA Actions -->
+            <div class="conf-actions">
+                <a href="home.html" class="submit-btn" style="min-width: 160px; justify-content: center;">
+                    <span class="btn-text">Back to Home</span>
+                    <span class="btn-glow"></span>
+                </a>
+                <a href="feedback.html" class="conf-secondary-btn" style="min-width: 160px; justify-content: center;">
+                    <i class="fa-regular fa-comment-dots"></i>
+                    <span>Leave Feedback</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <a href="home.html" class="logo-wrapper" aria-label="The Velvet Roast — Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                    <span class="logo-text">Velvet Roast</span>
+                </a>
+                <p class="footer-tagline">Artisan coffee, slow-brewed with care. A neighborhood ritual since 2026.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 The Velvet Roast. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- ====== Page Scripts ====== -->
+    <script src="auth.js"></script>
+    <script src="confirmation.js"></script>
+</body>
+</html>
