@@ -1,4 +1,4 @@
-# Velvet Roast Coffee Shop Customer Login
+# Velvet Roast Coffee Shop
 
 A premium, highly interactive customer authentication interface for **The Velvet Roast** artisan coffee shop. Built using high-fidelity dark coffee aesthetics, vanilla web standards, and rich transitions.
 
@@ -16,7 +16,61 @@ A premium, highly interactive customer authentication interface for **The Velvet
 
 ## 📂 File Layout
 
-*   `index.html` - Semantic markup, local vector SVGs, and transition modal wrappers.
-*   `styles.css` - CSS variables, responsive grid grids, keyframes, and media layouts.
-*   `app.js` - Real-time state machine, field validation checking, UI binding, and animations.
-*   `assets/coffee_shop_login_banner.jpg` - Generated visual background.
+```
+CUSTOMER/
+├── pages/
+│   ├── auth/index.html       - Login/Signup page
+│   ├── main/home.html        - Main dashboard
+│   ├── menu/menu.html        - Product catalog
+│   ├── order/
+│   │   ├── order.html       - Current order
+│   │   ├── checkout.html    - Payment
+│   │   └── confirmation.html - Order success
+│   ├── company/
+│   │   ├── about.html       - About Us
+│   │   └── contact.html     - Contact
+│   └── customer/
+│       ├── feedback.html    - Leave feedback
+│       └── location.html    - Find us
+├── css/
+│   ├── main.css             - Global styles
+│   ├── menu.css            - Menu page styles
+│   ├── order.css           - Order pages styles
+│   ├── feedback.css        - Feedback page styles
+│   ├── location.css        - Location page styles
+│   ├── about.css           - About page styles
+│   └── contact.css         - Contact page styles
+├── js/
+│   ├── app.js              - Main app logic
+│   ├── auth/auth.js        - Authentication
+│   ├── pages/
+│   │   ├── home.js         - Home page
+│   │   ├── menu.js         - Menu page
+│   │   ├── order.js        - Order page
+│   │   ├── checkout.js     - Checkout page
+│   │   ├── confirmation.js - Confirmation page
+│   │   ├── feedback.js     - Feedback page
+│   │   └── location.js     - Location page
+│   └── data/products.js    - Product data
+└── README.md
+```
+
+## 🚀 Getting Started
+
+1.  Open `pages/auth/index.html` in a browser to start the app
+2.  Navigate through the user flow: Login → Home → Menu → Order → Checkout → Confirmation
+
+## 📱 Pages Overview
+
+| Page | Path | Description |
+|------|------|-------------|
+| Login/Signup | `pages/auth/index.html` | Authentication |
+| Home | `pages/main/home.html` | Main dashboard |
+| Menu | `pages/menu/menu.html` | Browse products |
+| Order | `pages/order/order.html` | Current order |
+| Checkout | `pages/order/checkout.html` | Payment |
+| Confirmation | `pages/order/confirmation.html` | Order success |
+| About | `pages/company/about.html` | About Us |
+| Contact | `pages/company/contact.html` | Contact |
+| Feedback | `pages/customer/feedback.html` | Leave feedback |
+| Location | `pages/customer/location.html` | Find us |
