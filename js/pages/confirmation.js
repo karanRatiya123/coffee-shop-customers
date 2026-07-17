@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderId = urlParams.get('id');
 
     if (!orderId) {
-        window.location.replace('home.html');
+        window.location.replace('../../index.html');
         return;
     }
 

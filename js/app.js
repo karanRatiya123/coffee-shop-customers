@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If a session already exists, send the user straight to the home page
     if (sessionStorage.getItem('isLoggedIn') === 'true') {
-        window.location.replace('home.html');
+        window.location.replace('../../index.html');
         return;
     }
 
@@ -605,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('userName', displayName);
 
         // Redirect to the customer home page
-        window.location.href = 'home.html';
+        window.location.href = '../../index.html';
     });
 
     // Password Eye Toggles
@@ -716,11 +716,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Honor a pre-login return destination if the user was bounced
                         // from a protected page; otherwise default to home.html
                         const returnTo = sessionStorage.getItem('returnTo');
-                        if (returnTo && returnTo !== 'index.html') {
+                        if (returnTo && !returnTo.includes('index.html') && !returnTo.includes('auth.html')) {
                             sessionStorage.removeItem('returnTo');
                             window.location.href = returnTo;
                         } else {
-                            window.location.href = 'home.html';
+                            window.location.href = '../../index.html';
                         }
                     }, 800);
                 }, 2200);

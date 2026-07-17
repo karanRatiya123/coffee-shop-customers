@@ -59,7 +59,7 @@ body {
 /* --- Left Banner Panel --- */
 .banner-panel {
     position: relative;
-    background-image: url('assets/coffee_shop_login_banner.jpg');
+    background-image: url('../assets/coffee_shop_login_banner.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -1393,7 +1393,7 @@ body.home-page {
 .home-hero {
     position: relative;
     min-height: 90vh;
-    background-image: url('assets/coffee_shop_login_banner.jpg');
+    background-image: url('../assets/coffee_shop_login_banner.jpg');
     background-size: cover;
     background-position: center top;
     display: flex;
