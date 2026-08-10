@@ -142,9 +142,21 @@
         });
     };
 
+    // Inject AI chatbot script dynamically
+    const injectAiChat = () => {
+        const chatScript = document.createElement('script');
+        chatScript.src = isInSubdir ? '../../js/ai-chat.js' : 'js/ai-chat.js';
+        document.body.appendChild(chatScript);
+    };
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', fixLinks);
+        document.addEventListener('DOMContentLoaded', () => {
+            fixLinks();
+            injectAiChat();
+        });
     } else {
         fixLinks();
+        injectAiChat();
     }
 })();
+
