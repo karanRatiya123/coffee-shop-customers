@@ -19,19 +19,9 @@ public class DbUtil {
     }
 
     public static Connection getConnection() throws SQLException {
-        String url = System.getenv("DB_URL");
-        String user = System.getenv("DB_USER");
-        String password = System.getenv("DB_PASSWORD");
-
-        if (url == null || url.trim().isEmpty()) {
-            url = DEFAULT_URL;
-        }
-        if (user == null) {
-            user = DEFAULT_USER;
-        }
-        if (password == null) {
-            password = DEFAULT_PASSWORD;
-        }
+        String url = ConfigUtil.get("DB_URL", "DB_URL", DEFAULT_URL);
+        String user = ConfigUtil.get("DB_USER", "DB_USER", DEFAULT_USER);
+        String password = ConfigUtil.get("DB_PASSWORD", "DB_PASSWORD", DEFAULT_PASSWORD);
 
         return DriverManager.getConnection(url, user, password);
     }

@@ -1,0 +1,14 @@
+# The Velvet Roast - Backend Configuration Example
+# Copy this file to src/main/java/config.properties and fill in your actual keys.
+# NEVER commit the final config.properties file with real keys to Git.
+
+# Gemini AI API Key
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
+
+# Gemini AI Model (default: gemini-2.0-flash)
+GEMINI_MODEL=gemini-2.0-flash
+
+# Database Connection Details
+DB_URL=jdbc:mysql://localhost:3306/coffee_shope_system?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+DB_USER=root
+DB_PASSWORD=

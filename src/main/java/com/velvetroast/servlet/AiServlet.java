@@ -22,6 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.velvetroast.util.DbUtil;
+import com.velvetroast.util.ConfigUtil;
 
 @WebServlet("/AiServlet")
 public class AiServlet extends HttpServlet {
@@ -61,6 +62,12 @@ public class AiServlet extends HttpServlet {
         "- Sugar-free Sweetener (Free)\n";
 
     @Override
+    public void init() throws ServletException {
+        super.init();
+        ConfigUtil.loadFromServletContext(getServletContext());
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
@@ -93,11 +100,8 @@ public class AiServlet extends HttpServlet {
         String offersContext = getOffersContextFromDb();
 
         // 3. Obtain the Gemini API key securely
-        String apiKey = System.getenv("GEMINI_API_KEY");
-        if (apiKey == null || apiKey.trim().isEmpty()) {
-            // Check system property fallback
-            apiKey = System.getProperty("GEMINI_API_KEY");
-        }
+        String apiKey = ConfigUtil.get("GEMINI_API_KEY", "GEMINI_API_KEY");
+        String geminiModel = ConfigUtil.get("GEMINI_MODEL", "GEMINI_MODEL", "gemini-2.0-flash");
 
         if (apiKey == null || apiKey.trim().isEmpty()) {
             // For safety and debug, log it, but do not leak or fail completely. Give a friendly message.
@@ -105,6 +109,7 @@ public class AiServlet extends HttpServlet {
             response.getWriter().write("{\"reply\": \"Welcome to The Velvet Roast! [Demo Mode] (Please set the GEMINI_API_KEY environment variable on your server to enable live AI chat replies). You asked: '" + userMessage + "'\"}");
             return;
         }
+        System.out.println("[AiServlet] Using Gemini model: " + geminiModel + " (api key length=" + apiKey.length() + ")");
 
         // 4. Construct System Instruction for Gemini
         String systemInstruction = 
@@ -135,7 +140,7 @@ public class AiServlet extends HttpServlet {
         try {
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest geminiRequest = HttpRequest.newBuilder()
-                    .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey))
+                    .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/" + geminiModel + ":generateContent?key=" + apiKey))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(geminiPayload))
                     .build();
@@ -145,20 +150,34 @@ public class AiServlet extends HttpServlet {
             if (geminiResponse.statusCode() == 200) {
                 String responseBody = geminiResponse.body();
                 String aiReply = extractGeminiText(responseBody);
-                
+
                 // Escape response for JSON
                 String escapedReply = escapeJsonString(aiReply);
                 response.getWriter().write("{\"reply\": \"" + escapedReply + "\"}");
             } else {
-                System.err.println("[AiServlet] Gemini API error. Status: " + geminiResponse.statusCode() + ", Body: " + geminiResponse.body());
+                String body = geminiResponse.body();
+                System.err.println("[AiServlet] Gemini API error. Status: " + geminiResponse.statusCode() + ", Body: " + body);
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("{\"error\": \"Gemini API responded with status code " + geminiResponse.statusCode() + "\"}");
+                // Surface a short, useful error code so the client (and Tomcat logs) tell you *why* it failed.
+                response.getWriter().write("{\"error\": \"Our brewing systems are busy. Please try asking again shortly!\", \"status\": " + geminiResponse.statusCode() + ", \"hint\": \"" + friendlyHint(geminiResponse.statusCode()) + "\"}");
             }
 
         } catch (Exception e) {
             System.err.println("[AiServlet] Request failed: " + e.getMessage());
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("{\"error\": \"AI request processing failed: " + e.getMessage() + "\"}");
+            response.getWriter().write("{\"error\": \"Our brewing systems are busy. Please try asking again shortly!\", \"detail\": \"" + escapeJsonString(String.valueOf(e.getMessage())) + "\"}");
+        }
+    }
+
+    // Translate raw Gemini HTTP statuses into something readable in the browser console.
+    private String friendlyHint(int status) {
+        switch (status) {
+            case 400: return "Bad request (check system instruction payload).";
+            case 401: return "Invalid API key.";
+            case 403: return "API key lacks permission or region not enabled.";
+            case 404: return "Model not found. Update GEMINI_MODEL in config.properties.";
+            case 429: return "Rate limit hit. Try again in a few seconds.";
+            default:  return "Upstream error.";
         }
     }
 

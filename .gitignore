@@ -1,0 +1,13 @@
+# Ignore secret/credential configuration files
+config.properties
+src/main/java/config.properties
+src/main/webapp/WEB-INF/config.properties
+build/classes/config.properties
+.env
+.env.local
+
+# Java build directories
+/bin/
+/target/
+# Note: build/ is committed in this repo, so we ignore config.properties inside it specifically
+build/classes/config.properties

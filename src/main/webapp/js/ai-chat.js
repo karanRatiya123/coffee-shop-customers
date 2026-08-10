@@ -729,11 +729,8 @@
             const indicatorEl = document.getElementById('velvet-chat-typing-indicator');
             if (indicatorEl) indicatorEl.remove();
             
-            let messageText = "I had trouble connecting to the shop's server. Make sure the Java dynamic web server is running and Tomcat context is set up properly.";
-            if (error && error.message) {
-                // If it is a Gemini/API error returned by the servlet, display it directly
-                messageText = `Error: ${error.message}`;
-            }
+            // Show a friendly thematic error message instead of raw system/API error details
+            const messageText = "Our brewing systems are busy. Please try asking again shortly!";
             appendMessageBubble('model', messageText);
         }
     }
