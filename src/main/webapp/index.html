@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/ai-ui.css">
 </head>
 <body class="home-page">
 
@@ -263,8 +264,57 @@
         </div>
     </footer>
 
+    <!-- ====== AI UI Assistant Floating Widget ====== -->
+    <div class="ai-widget-toggle" id="ai-widget-toggle" title="Open AI Coffee Assistant" aria-label="Open AI Assistant">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
+            <path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7z"/>
+            <circle cx="9" cy="15" r="1"/>
+            <circle cx="15" cy="15" r="1"/>
+        </svg>
+        <span class="ai-widget-badge"></span>
+    </div>
+
+    <!-- AI Chat Window Panel -->
+    <div class="ai-chat-window" id="ai-chat-window" aria-label="AI Assistant Chat Window">
+        <div class="ai-chat-header">
+            <div class="ai-header-info">
+                <div class="ai-avatar">AI</div>
+                <div class="ai-title-wrapper">
+                    <h3>Velvet AI Barista</h3>
+                    <span>Online & Ready</span>
+                </div>
+            </div>
+            <button class="ai-chat-close" id="ai-chat-close" aria-label="Close Chat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-msg ai-msg-assistant">
+                <div class="ai-msg-content">
+                    Hello! I'm your Velvet Roast AI Assistant. How can I brew up something special for you today? Ask me for drink recommendations, menu advice, or shop hours!
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-suggestions">
+            <button class="ai-chip">🔥 Best selling coffee</button>
+            <button class="ai-chip">🎉 Special offers & deals</button>
+            <button class="ai-chip">⭐ Top customer rated</button>
+        </div>
+
+        <div class="ai-chat-input-area">
+            <input type="text" class="ai-chat-input" id="ai-chat-input" placeholder="Ask AI Barista..." autocomplete="off">
+            <button class="ui-btn ui-btn-default ui-btn-size-icon particle-btn" id="ai-send-btn" aria-label="Send message">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+    </div>
+
     <script src="js/services/apiService.js"></script>
     <script src="js/auth/auth.js"></script>
     <script src="js/pages/home.js"></script>
+    <script src="js/ai-ui.js"></script>
 </body>
 </html>

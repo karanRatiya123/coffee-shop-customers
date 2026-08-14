@@ -104,18 +104,20 @@ async function loadFeaturedProducts() {
 // Render function accepting dynamic featured products data
 function renderFeaturedProducts(featuredProducts = []) {
     const container = document.getElementById('featured-grid');
+    const featuredSection = document.getElementById('featured');
     if (!container) return;
 
     container.innerHTML = '';
 
     if (!Array.isArray(featuredProducts) || featuredProducts.length === 0) {
-        // Empty state when Servlet API is not connected or returns empty
-        container.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text-muted);">
-                <p>No featured products available at the moment.</p>
-            </div>
-        `;
+        if (featuredSection) {
+            featuredSection.style.display = 'none';
+        }
         return;
+    }
+
+    if (featuredSection) {
+        featuredSection.style.display = 'block';
     }
 
     featuredProducts.forEach(item => {
